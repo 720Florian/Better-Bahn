@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Better Bahn - Günstigere Bahntickets finden</title>
+    <meta name="description" content="Finde günstigere Split-Ticket-Optionen für Deutsche Bahn Verbindungen. Kostenlos und Open Source.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #1a1a1a;
+        }
+        .hero {
+            background: linear-gradient(135deg, #F5A89A 0%, #d9534f 50%, #2D1F1F 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .hero img.logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .hero .tagline {
+            font-size: 1.4em;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        .download-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+        }
+        .download-btn img {
+            height: 24px;
+        }
+        .section {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #F5A89A;
+            text-align: center;
+        }
+        .screenshots {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding: 40px 20px;
+            background: linear-gradient(180deg, #1a1a1a 0%, #2a2020 100%);
+        }
+        .screenshots img {
+            max-height: 500px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .features {
+            background: #232323;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .feature-card {
+            background: #2a2a2a;
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #333;
+        }
+        .feature-card h3 {
+            color: #F5A89A;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .feature-card p {
+            color: #aaa;
+        }
+        .savings-example {
+            background: linear-gradient(135deg, #1e3a1e 0%, #1a1a1a 100%);
+            border: 1px solid #2d5a2d;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 400px;
+            margin: 30px auto;
+        }
+        .savings-example .label {
+            color: #888;
+            font-size: 0.9em;
+        }
+        .savings-example .price {
+            font-size: 1.3em;
+            color: #fff;
+        }
+        .savings-example .price.green {
+            color: #4CAF50;
+        }
+        .savings-example .savings {
+            font-size: 1.8em;
+            color: #4CAF50;
+            font-weight: bold;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #333;
+        }
+        .privacy-section {
+            background: #1a1a1a;
+            text-align: center;
+        }
+        .privacy-section p {
+            color: #aaa;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        .privacy-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .badge {
+            background: #2a2a2a;
+            color: #4CAF50;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.9em;
+            border: 1px solid #333;
+        }
+        footer {
+            background: #111;
+            color: #666;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        footer a {
+            color: #F5A89A;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .open-source {
+            background: #232323;
+            text-align: center;
+        }
+        .open-source p {
+            color: #aaa;
+        }
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        .github-btn:hover {
+            background: #444;
+        }
+        .github-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <img src="https://raw.githubusercontent.com/chukfinley/Besser-Bahn/main/assets/app_icon.png" alt="Better Bahn Logo" class="logo">
+        <h1>Better Bahn</h1>
+        <p class="tagline">Finde günstigere Split-Ticket-Optionen für Deutsche Bahn Verbindungen</p>
+
+        <div class="download-buttons">
+            <a href="https://apt.izzysoft.de/packages/dev.chuk.betterbahn" class="download-btn">
+                <img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid_badge.png" alt="IzzyOnDroid" style="height: 40px;">
+            </a>
+            <a href="https://github.com/chukfinley/Besser-Bahn/releases" class="download-btn">
+                Download APK
+            </a>
+        </div>
+    </section>
+
+    <section class="screenshots">
+        <img src="https://raw.githubusercontent.com/chukfinley/Besser-Bahn/main/assets/App1.png" alt="Better Bahn Screenshot 1">
+        <img src="https://raw.githubusercontent.com/chukfinley/Besser-Bahn/main/assets/App2.png" alt="Better Bahn Screenshot 2">
+    </section>
+
+    <section class="section features">
+        <h2>Funktionen</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Split-Ticket Analyse</h3>
+                <p>Findet automatisch die günstigste Kombination von Einzeltickets für deine Strecke.</p>
+            </div>
+            <div class="feature-card">
+                <h3>BahnCard Unterstützung</h3>
+                <p>Berücksichtigt deine BahnCard 25/50 für 1. und 2. Klasse bei der Preisberechnung.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Deutschland-Ticket</h3>
+                <p>Integration für Deutschland-Ticket Inhaber - Nahverkehrsstrecken werden automatisch berücksichtigt.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Direkte Buchung</h3>
+                <p>Direkte Links zu bahn.de für jedes Ticket - einfach und schnell buchen.</p>
+            </div>
+            <div class="feature-card">
+                <h3>100% Lokal</h3>
+                <p>Läuft vollständig auf deinem Gerät. Keine Server, keine Datensammlung.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Open Source</h3>
+                <p>Vollständig quelloffen und kostenlos. Keine Werbung, keine versteckten Kosten.</p>
+            </div>
+        </div>
+
+        <div class="savings-example">
+            <div class="label">Direktpreis:</div>
+            <div class="price">49.30 €</div>
+            <div class="label" style="margin-top: 10px;">Split-Ticket-Preis:</div>
+            <div class="price green">18.60 €</div>
+            <div class="savings">Ersparnis: 30.70 €</div>
+        </div>
+    </section>
+
+    <section class="section privacy-section">
+        <h2>Datenschutz</h2>
+        <p>Better Bahn sammelt keine persönlichen Daten. Die App läuft vollständig lokal auf deinem Gerät - es gibt keinen zentralen Server.</p>
+        <div class="privacy-badges">
+            <span class="badge">Keine Tracking</span>
+            <span class="badge">Keine Werbung</span>
+            <span class="badge">Keine Analytics</span>
+            <span class="badge">100% Lokal</span>
+        </div>
+        <p style="margin-top: 30px;"><a href="privacy-policy.html">Vollständige Datenschutzerklärung</a></p>
+    </section>
+
+    <section class="section open-source">
+        <h2>Open Source</h2>
+        <p>Better Bahn ist freie Software unter der WTFPL-Lizenz. Der vollständige Quellcode ist auf GitHub verfügbar.</p>
+        <a href="https://github.com/chukfinley/Besser-Bahn" class="github-btn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            GitHub Repository
+        </a>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://github.com/chukfinley/Besser-Bahn">GitHub</a>
+            <a href="https://github.com/chukfinley/Besser-Bahn/releases">Downloads</a>
+            <a href="privacy-policy.html">Datenschutz</a>
+            <a href="https://github.com/chukfinley/Besser-Bahn/issues">Kontakt</a>
+        </div>
+        <p>Better Bahn ist ein inoffizielles Projekt und steht in keiner Verbindung zur Deutschen Bahn AG.</p>
+        <p style="margin-top: 10px;">© 2025 Better Bahn</p>
+    </footer>
+</body>
+</html>
